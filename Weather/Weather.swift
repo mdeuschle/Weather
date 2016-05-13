@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+class Weather {
+
+    var name = ""
+    var temp = ""
+    var descrip = ""
+
+    init(json: JSON) {
+
+        self.name = json["name"].stringValue
+        self.temp = String(json["main"]["temp"].doubleValue)
+        for item in json["weather"].arrayValue {
+            self.descrip = item["description"].stringValue
+        }
+    }
+}
